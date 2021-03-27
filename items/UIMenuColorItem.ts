@@ -1,5 +1,4 @@
 import BadgeStyle from "../enums/BadgeStyle";
-import ResRectangle from "../modules/ResRectangle";
 import Sprite from "../modules/Sprite";
 import Color from "../utils/Color";
 import LiteEvent from "../utils/LiteEvent";
