@@ -16,7 +16,7 @@ export default class UIMenuColorItem extends UIMenuItem {
 
 		this._colorSprite = new Sprite(
 			"commoncolorui", // now you need a custom .ytd
-			"color_grad_a", // color_grad_b not supported for now
+			"color_grad_single",
 			new Point(0, 0),
 			new Size(50, 50),
 			0,
