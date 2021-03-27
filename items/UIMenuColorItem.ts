@@ -8,26 +8,36 @@ import Size from "../utils/Size";
 import UIMenuItem from "./UIMenuItem";
 
 export default class UIMenuColorItem extends UIMenuItem {
-	private readonly _colorRect: ResRectangle;
+	private readonly _colorSprite: Sprite;
 
 	constructor(text: string, color: Color, description: string = '') {
 		super(text, description);
 		const y = 0;
 
-		this._colorRect = new ResRectangle(
-			new Point(410, y + 95),
-			new Size(28, 28),
+		this._colorSprite = new Sprite(
+			"commoncolorui", // now you need a custom .ytd
+			"color_grad_a", // color_grad_b not supported for now
+			new Point(0, 0),
+			new Size(50, 50),
+			0,
 			color
 		);
 	}
 
-	// TODO: color getter and setter
+	// TODO: don't rely on _colorSprite
+	get CurrentColor() {
+		return this._colorSprite.color;
+	}
+
+	set CurrentColor(color: Color) {
+		this._colorSprite.color = color;
+	}
 
 	public SetVerticalPosition(y: number) {
 		super.SetVerticalPosition(y);
 
-		this._colorRect.pos = new Point(
-			380 + this.Offset.X + this.Parent.WidthOffset,
+		this._colorSprite.pos = new Point(
+			380 + this.Offset.X,
 			y + 138 + this.Offset.Y
 		);
 	}
@@ -35,14 +45,12 @@ export default class UIMenuColorItem extends UIMenuItem {
 	public Draw() {
 		super.Draw();
 
-		// TODO: border/background for better visibility
-
-		this._colorRect.pos = new Point(
-			380 + this.Offset.X + this.Parent.WidthOffset + 14,
-			this._colorRect.pos.Y + 11
+		this._colorSprite.pos = new Point(
+			380 + this.Offset.X + this.Parent.WidthOffset,
+			this._colorSprite.pos.Y
 		);
 
-		this._colorRect.Draw();
+		this._colorSprite.Draw();
 	}
 
 	public SetRightBadge(badge: BadgeStyle) {
