@@ -7,25 +7,25 @@ import Size from "../utils/Size";
 import UIMenuItem from "./UIMenuItem";
 
 export default class UIMenuMultiColorItem extends UIMenuItem {
-	private readonly _topColorSprite: Sprite;
-	private readonly _bottomColorSprite: Sprite;
+	private readonly _firstHalfSprite: Sprite;
+	private readonly _secondHalfSprite: Sprite;
 
 	constructor(text: string, topColor: Color, bottomColor: Color, description: string = '') {
 		super(text, description);
 		const y = 0;
 
-		this._topColorSprite = new Sprite(
-			"commoncolorui", // now you need a custom .ytd
-			"color_grad_multi_a",
+		this._firstHalfSprite = new Sprite(
+			"mpcarhud",
+			"leaderboard_car_colour_icon_primaryhalf",
 			new Point(0, 0),
 			new Size(50, 50),
 			0,
 			topColor
 		);
 
-		this._bottomColorSprite = new Sprite(
-			"commoncolorui", // now you need a custom .ytd
-			"color_grad_multi_b",
+		this._secondHalfSprite = new Sprite(
+			"mpcarhud",
+			"leaderboard_car_colour_icon_2ndaryhalf",
 			new Point(0, 0),
 			new Size(50, 50),
 			0,
@@ -34,45 +34,45 @@ export default class UIMenuMultiColorItem extends UIMenuItem {
 	}
 
 	// TODO: don't rely on sprites
-	get CurrentTopColor() {
-		return this._topColorSprite.color;
+	get CurrentFirstColor() {
+		return this._firstHalfSprite.color;
 	}
 
-	set CurrentTopColor(color: Color) {
-		this._topColorSprite.color = color;
+	set CurrentFirstColor(color: Color) {
+		this._firstHalfSprite.color = color;
 	}
 
-	get CurrentBottomColor() {
-		return this._bottomColorSprite.color;
+	get CurrentSecondColor() {
+		return this._secondHalfSprite.color;
 	}
 
-	set CurrentBottomColor(color: Color) {
-		this._bottomColorSprite.color = color;
+	set CurrentSecondColor(color: Color) {
+		this._secondHalfSprite.color = color;
 	}
 
 	public SetVerticalPosition(y: number) {
 		super.SetVerticalPosition(y);
 
-		this._topColorSprite.pos = new Point(
+		this._firstHalfSprite.pos = new Point(
 			380 + this.Offset.X,
 			y + 138 + this.Offset.Y
 		);
 
-		this._bottomColorSprite.pos = this._topColorSprite.pos;
+		this._secondHalfSprite.pos = this._firstHalfSprite.pos;
 	}
 
 	public Draw() {
 		super.Draw();
 
-		this._topColorSprite.pos = new Point(
+		this._firstHalfSprite.pos = new Point(
 			380 + this.Offset.X + this.Parent.WidthOffset,
-			this._topColorSprite.pos.Y
+			this._firstHalfSprite.pos.Y
 		);
 
-		this._bottomColorSprite.pos = this._topColorSprite.pos;
+		this._secondHalfSprite.pos = this._firstHalfSprite.pos;
 
-		this._topColorSprite.Draw();
-		this._bottomColorSprite.Draw();
+		this._firstHalfSprite.Draw();
+		this._secondHalfSprite.Draw();
 	}
 
 	public SetRightBadge(badge: BadgeStyle) {

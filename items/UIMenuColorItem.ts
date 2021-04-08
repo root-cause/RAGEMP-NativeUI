@@ -14,8 +14,8 @@ export default class UIMenuColorItem extends UIMenuItem {
 		const y = 0;
 
 		this._colorSprite = new Sprite(
-			"commoncolorui", // now you need a custom .ytd
-			"color_grad_single",
+			"mpcarhud",
+			"leaderboard_car_colour_icon_singlecolour",
 			new Point(0, 0),
 			new Size(50, 50),
 			0,
